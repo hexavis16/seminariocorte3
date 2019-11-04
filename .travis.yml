@@ -3,6 +3,3 @@ sudo: true
 
 before_install:
   - chmod +x mvnw
-
-deploy:
-  on: dev

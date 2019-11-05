@@ -17,3 +17,10 @@ qsdcWr2R2f5MQsb2iIziRkRY18wEBPcY/SwzsTY+R0tctErXPEE0sQH2ZMw4ym/u7dkE5IPrBvFIx71P
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=hexavis16_seminariocorte3
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: bash ./scripts/deploy.sh
+  on:
+    all_branches: true

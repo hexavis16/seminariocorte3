@@ -4,5 +4,23 @@ sudo: true
 before_install:
   - chmod +x mvnw
 
+addons:
+  sonarcloud:
+    organization: "hexavis"
+    token:
+      secure: "N6lhZjyFRm1wvQ3tQ7+BJtv3Q77L0tIcCieQHl14kN7WXWeoR1jXheUcE8ipTJ/rFF5sQ2O4BXy7Q+cXnuMqD39a/t5EVKHpLDqo+agEPzvZGFi9nT42+BszZXsAGLp4l
+zZEpXZ+5+3wjc7R0NeQwWldayhX1eBAG+8TAd3LwPGFDL4awYHcuYM0xeqCBdxMdFeaMJ71o4pYd5D0yxrokFI6ZtOGyjlt4u8oRRBpmjxOFOwoQtD9HrXvKFhYh9Ry3ZZNC7czTIqes
+q/ShYVrpsNaaHCSGeZz4KQIDI1Uv6GYTo9L0A/cnIkK1OSwQ7e6ZYevwExa1GFtNyyhYmOJZCTxzfj+amROLERpW86wsaVKe52tQq9ZirzQfmC8wEwaZKM2tXHhFtxoujsHAAvyvlfFn
+HnEyIYqdHwRipJGCBTX6x8ZkGEszLJab289CoLG64HlhwiLbX5Cv2/GVjVfnChKV8hyJUz4qiStbdQouXNqNEzVBOcjG9C11VQOWdxMk0Qq5ilHwB3vpKFtJAws9n2ihmlk74L+zV7N/
+qsdcWr2R2f5MQsb2iIziRkRY18wEBPcY/SwzsTY+R0tctErXPEE0sQH2ZMw4ym/u7dkE5IPrBvFIx71P8YcsEwlKcgQeA+iac6092SfFgYFqsuqx0E/13O7dcduoBNp7FafKUI=" # encrypted value of your token
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=hexavis16_seminariocorte3
+
 deploy:
-	on: dev
+  provider: script
+  skip_cleanup: true
+  script: bash ./scripts/deploy.sh
+  on:
+    all_branches: true

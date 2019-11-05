@@ -3,7 +3,7 @@ sudo: true
 
 env:
   global:
-    - DEPLOY_KEY=123456
+    - DEPLOY_KEY=credentials.tar.gz
 
 before_install:
   - chmod +x mvnw
